@@ -1,0 +1,30 @@
+<h1>Home Page <%= locals.title%>
+</h1>
+
+<ul>
+    <%for(student of students){%>
+        <li>
+            <p>
+                <%= student.name %>
+
+            </p>
+            <p>
+                <%= student.std_college %>
+            </p>
+            <p>
+                Scheduled Interviews Till Now: 
+            </p>
+            <p>
+                <%if(locals.user){%>
+                    <form action="/interviews/createInterview" method="post">
+                        <input type="text" name="Interview_CompanyName" placeholder="Interview_CompanyName" required />
+                        <input type="time" name="Interview_time" placeholder="Interview_time" required />
+                        <input type="date" name="Interview_date" placeholder="Interview_date" required />
+                        <input type="hidden" name="student" value="<%= student._id %>" />
+                        <input type="submit" value="submit" />
+                    </form>
+                <%}%>    
+            </p>
+        </li>
+        <%}%>
+</ul>

@@ -1,0 +1,49 @@
+<%if(locals.user){%>
+    <form action="/students/store_student_data" method="post">
+    
+        <input type="name" name="name" placeholder="Enter name" required />
+        <input type="std_id" name="std_id" placeholder="Enter std_id" required />
+    
+        <input type="text" name="batch" placeholder="Enter batch" required />
+        <input type="text" name="std_college" placeholder="Enter std_college" required />
+        <label for="status">status: </label>
+        <select name="status" id="status">
+            <option value="placed">placed</option>
+            <option value="not-placed">not-placed</option>
+        </select>
+        <ul>
+            <p>Course Scores: </p>
+            <li>
+                <input type="text" name="dsa_score" placeholder="Enter dsa_score" required />
+                <input type="text" name="front_end_score" placeholder="Enter front_end_score" required />
+                <input type="text" name="back_end_score" placeholder="Enter back_end_score" required />
+                <input type="text" name="react_score" placeholder="Enter react_score" required />
+                
+            </li>
+        </ul>
+        <br />
+        <br />
+    
+        <label for="time">Enter interview_scheduled_time</label>
+        <br />
+    
+        <input id="time" type="time" name="interview_scheduled_time" placeholder="Enter interview_scheduled_time" required />
+        <br />
+        
+        <label for="date">Enter interview_scheduled_date</label>
+        <br />
+    
+        <input id="date" type="date" name="interview_scheduled_date" placeholder="Enter interview_scheduled_date" required />
+        <br />
+        <br />
+        
+        <label for="result">status: </label>
+        <select name="result" id="result">
+            <option value="passed">passed</option>
+            <option value="failed">failed</option>
+            <option value="did_not_applied">did_not_applied</option>
+            <option value="onHold">onHold</option>
+        </select>
+        <input type="submit" value="submit" />
+    </form>
+<%}%>

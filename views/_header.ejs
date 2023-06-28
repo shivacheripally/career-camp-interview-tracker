@@ -1,0 +1,18 @@
+<header>
+    Header Page
+</header>
+
+<% if(locals.user){ %>
+    <p>
+        <a href="/employees/sign-out">sign-out</a>
+    </p>
+    <p>
+        <a href="/students/enter_student_data">Add New Student</a>
+    </p>
+    
+<%}else{%>
+    <p>
+        <a href="/employees/sign-in">sign-in</a>
+        <a href="/employees/sign-up">sign-up</a>
+    </p>
+<%}%>
