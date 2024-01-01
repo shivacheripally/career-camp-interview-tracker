@@ -1,4 +1,5 @@
 const Student = require('../models/student');
+const Interview = require('../models/interview');
 
 const enter_student_data = function (req, res) {
     if(!req.isAuthenticated()){
@@ -41,4 +42,28 @@ const store_student_data = async function (req, res) {
     }
 }
 
-module.exports = { enter_student_data, store_student_data };
+const update_student_data = async function(req, res){
+    if(!req.isAuthenticated()){
+        console.log('Please Login!');
+        return res.redirect('/employees/sign-in');
+    }    
+
+    const id = req.query.id;
+
+    const student = await Student.findById(id)//.populate('user').exec();
+
+    const interviews = [];
+
+    for(const int_id of student.interviews){
+        const interview = await Interview.findById(int_id);
+        interviews.push(interview);
+    }
+
+    res.render('updateStudent', {
+        title: student?.name,
+        student:student,
+        interviews
+    })
+}
+
+module.exports = { enter_student_data, store_student_data, update_student_data };

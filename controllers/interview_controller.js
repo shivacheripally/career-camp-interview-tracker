@@ -9,11 +9,11 @@ const createInterview = async function(req, res) {
   console.log(req.body);
   try {
     const student = await Student.findById(req.body.student).exec();
-    console.log('student,student');
     if (student) {
       const interview = await Interview.create({
         Interview_CompanyName: req.body.Interview_CompanyName,
         Interview_time: req.body.Interview_time,
+        Interview_status: req.body.Interview_status,
         Interview_date: req.body.Interview_date
       });
 
@@ -33,4 +33,12 @@ const createInterview = async function(req, res) {
   }
 }
 
-module.exports = {createInterview};
+const updateStudentInterviewStatus = async function(req, res){
+  const id = req.query.id;
+  
+  await Interview.findByIdAndUpdate(id, {Interview_status: req.body.interview_status});
+  console.log('Status Updated Successfully!');
+  return res.redirect('back');
+}
+
+module.exports = {createInterview, updateStudentInterviewStatus};

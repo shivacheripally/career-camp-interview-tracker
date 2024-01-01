@@ -7,4 +7,6 @@ router.get('/enter_student_data',student_controller.enter_student_data);
 
 router.post('/store_student_data',student_controller.store_student_data);
 
+router.get('/updateStudentData', student_controller.update_student_data);
+
 module.exports = router;

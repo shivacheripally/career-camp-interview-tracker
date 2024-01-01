@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <h4>Interviews:</h4>
+    <% for(const interview of interviews){ %>
+        <p>CompanyName: <%= interview?.Interview_CompanyName %></p>
+        <p>Interview_time: <%= interview?.Interview_time %></p>
+        <p>Interview_date: <%= interview?.Interview_date %></p>
+        <p>Status: </p>
+        <form action="/interviews/updateStudentInterviewStatus?id=<%= interview?._id %>" method="post">
+            <select name="interview_status" id="interview_status">
+                <option value="scheduled" <%= interview?.Interview_status === 'scheduled' ? 'selected' : '' %>>Scheduled</option>
+                <option value="selected" <%= interview?.Interview_status === 'selected' ? 'selected' : '' %>>Selected</option>
+                <option value="not-selected" <%= interview?.Interview_status === 'not-selected' ? 'selected' : '' %>>Not Selected</option>
+                <option value="in-progress" <%= interview?.Interview_status === 'in-progress' ? 'selected' : '' %>>In Progress</option>
+            </select>
+            <button>Update</button>
+        </form>
+        <br>
+    <% } %>
+    <p>
+        Add New Interview: 
+    </p>
+    <form action="/interviews/createInterview" method="post">
+        <input type="text" name="Interview_CompanyName" placeholder="Interview_CompanyName" required />
+        <input type="time" name="Interview_time" placeholder="Interview_time" required />
+        <input type="date" name="Interview_date" placeholder="Interview_date" required />
+        <select name="Interview_status" id="Interview_status">
+            <option value="scheduled">Scheduled</option>
+            <option value="selected">Selected</option>
+            <option value="not-selected">Not Selected</option>
+            <option value="in-progress">In Progress</option>
+        </select>
+        <input type="hidden" name="student" value="<%= student._id %>" />
+        <input type="submit" value="submit" />
+    </form>
+</body>
+</html>
